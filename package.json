@@ -1,0 +1,19 @@
+{
+  "name": "example-firebase-lemonaide",
+  "version": "0.1.0",
+  "description": "Example Firebase project (Firestore emulator) with Node.js reservation service",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "seed": "node src/seed.js"
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2",
+    "firebase-admin": "^11.10.1",
+    "uuid": "^9.0.0"
+  }
+}
