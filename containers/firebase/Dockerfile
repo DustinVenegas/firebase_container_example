@@ -1,5 +1,5 @@
-FROM alpine:3
-RUN apk add --quiet --update --no-cache bash nodejs npm openjdk17-jre vim
+FROM node:alpine
+RUN apk add --quiet --update --no-cache bash openjdk17-jre vim
 RUN npm install -g firebase-tools
 RUN mkdir -p /firebase/volume
 WORKDIR /firebase
