@@ -1,4 +1,4 @@
-FROM node:alpine
+FROM node:20-alpine
 RUN apk add --quiet --update --no-cache bash openjdk17-jre vim
 RUN npm install -g firebase-tools
 RUN mkdir -p /firebase/volume
@@ -16,7 +16,7 @@ COPY storage.rules .
 ENV FIREBASE_PROJECT_ID=
 # required to perform some cli operations
 # https://firebase.google.com/docs/cli#cli-ci-systems
-ENV FIREBASE_TOKEN=
+# Do not hardcode sensitive tokens here. Provide FIREBASE_TOKEN at runtime or via Docker secrets.
 # the default ports used by cli
 # https://firebase.google.com/docs/emulator-suite/install_and_configure#port_configuration
 EXPOSE 4000

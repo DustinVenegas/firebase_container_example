@@ -1,0 +1,20 @@
+{
+  "name": "example_firebase_devcontainer",
+  "dockerComposeFile": ["../docker-compose.yml", "docker-compose.extension.yml"],
+  "service": "devcontainer",
+  "workspaceFolder": "/workspaces",
+  "remoteUser": "root",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "eamodio.gitlens",
+        "ms-azuretools.vscode-docker",
+        "ms-vscode-remote.remote-containers"
+      ],
+      "settings": {}
+    }
+  },
+  "postCreateCommand": "npm install"
+}

@@ -7,6 +7,7 @@ services:
       - FIRESTORE_EMULATOR_HOST=firestore-emulator:8080
       - GOOGLE_CLOUD_PROJECT=emu-project
       - NODE_ENV=development
+      # FIREBASE_TOKEN should be provided via a .env file or environment when needed
     depends_on:
       firestore-emulator:
         condition: service_started
@@ -16,6 +17,8 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    networks:
+      - example_net
 
   firestore-emulator:
     build:
@@ -31,3 +34,8 @@ services:
     volumes:
       - ./emulator_data:/data
     command: ["--non-interactive", "emulators:start", "--only", "firestore", "--project", "emu-project", "--import", "/data", "--export-on-exit", "/data"]
+    networks:
+      - example_net
+networks:
+  example_net:
+    driver: bridge
