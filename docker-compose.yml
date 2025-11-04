@@ -1,8 +1,8 @@
 services:
   api:
     build: .
-    ports:
-      - '13000:3000' # host 13000 -> container 3000 (moved from 3000 to avoid local conflicts)
+    expose:
+      - '3000' # api HTTP server
     environment:
       - FIRESTORE_EMULATOR_HOST=firestore-emulator:8080
       - GOOGLE_CLOUD_PROJECT=emu-project
@@ -27,15 +27,18 @@ services:
     environment:
       - FIRESTORE_EMULATOR_HOST=0.0.0.0:8080
       - FIREBASE_PROJECT_ID=emu-project
-    ports:
-      - '11080:8080' # Firestore port (host 11080 -> container 8080)
-      - '9000:9000' # Emulator UI port
-      - '9199:9199' # Auth emulator port
+    expose:
+      - '8080' # Firestore port
+      - '4400' # Emulator UI port
+      - '9150' # Auth emulator port
     volumes:
       - ./emulator_data:/data
     command: ["--non-interactive", "emulators:start", "--only", "firestore", "--project", "emu-project", "--import", "/data", "--export-on-exit", "/data"]
     networks:
       - example_net
+
 networks:
   example_net:
     driver: bridge
+    # internal: true
+

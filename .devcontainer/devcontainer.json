@@ -3,7 +3,34 @@
   "dockerComposeFile": ["../docker-compose.yml", "docker-compose.extension.yml"],
   "service": "devcontainer",
   "workspaceFolder": "/workspaces",
-  "remoteUser": "root",
+  "remoteUser": "node",
+  "postCreateCommand": "npm install",
+  "shutdownAction": "stopCompose",
+  "forwardPorts": [3000, "firestore-emulator:8080", "firestore-emulator:9000", "firestore-emulator:9199"],
+  "portsAttributes": {
+    "3000": {
+      "label": "Application (API)",
+      "onAutoForward": "notify"
+    },
+    "firestore-emulator:8080": {
+      "label": "Firestore",
+      "onAutoForward": "notify"
+    },
+    "firestore-emulator:9000": {
+      "label": "Emulator UI",
+      "onAutoForward": "notify"
+    },
+    "firestore-emulator:9199": {
+      "label": "Auth",
+      "onAutoForward": "notify"
+    }
+  },
+  "otherPortsAttributes": {
+    "onAutoForward": "ignore"
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
+  },
   "customizations": {
     "vscode": {
       "extensions": [
@@ -15,6 +42,5 @@
       ],
       "settings": {}
     }
-  },
-  "postCreateCommand": "npm install"
+  }
 }

@@ -8,6 +8,8 @@ services:
       - .:/workspaces:cached
     networks:
       - example_net
+    depends_on:
+      - firestore-emulator
 
 networks:
   example_net:
