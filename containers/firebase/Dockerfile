@@ -1,5 +1,5 @@
 FROM node:20-alpine
-RUN apk add --quiet --update --no-cache bash openjdk17-jre vim
+RUN apk add --quiet --update --no-cache bash openjdk21-jre vim
 RUN npm install -g firebase-tools
 RUN mkdir -p /firebase/volume
 WORKDIR /firebase
