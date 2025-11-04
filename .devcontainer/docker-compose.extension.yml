@@ -10,6 +10,10 @@ services:
       - example_net
     depends_on:
       - firestore-emulator
+    environment:
+      - FIRESTORE_EMULATOR_HOST=firestore-emulator:8080
+      - API_HOST=api
+      - GOOGLE_CLOUD_PROJECT=emu-project
 
 networks:
   example_net:
